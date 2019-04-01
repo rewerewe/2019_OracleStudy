@@ -1,39 +1,39 @@
-¡á¡á¡á Å°º¸µå ÁÖ¿ä Æ¯¼ö¹®ÀÚ ¿µ¹® ÀÌ¸§ ¡á¡á¡á
+â– â– â–  í‚¤ë³´ë“œ ì£¼ìš” íŠ¹ìˆ˜ë¬¸ì ì˜ë¬¸ ì´ë¦„ â– â– â– 
 
-'	¡æ  Grave
-~	¡æ  Tilde
-!	¡æ  Exclamation Point
-@	¡æ  At sign, Commercial At
-#	¡æ  Crosshatch, Sharp, Pound Sign
-$	¡æ  Dollar Sign
-%	¡æ  Percent Sign
-^	¡æ  Circumflex  ***
-&	¡æ  Ampersand
-*	¡æ  Asterisk
-(	¡æ  Left Parenthesis
-)	¡æ  Right Parenthesis
-()	¡æ  Parentheses   	¡Ø º¹¼öÇü - ses
--	¡æ  Hyphen, Dash, Minus Sign
-_	¡æ  Underscore, Underline
-=	¡æ  Equal Sign
-+	¡æ  Plus Sign
-|	¡æ  Vertical Bar 	¡Ø ²ø²Ã¿¡ ¿µÇâ 
-[	¡æ  Left Bracket
-]	¡æ  Right Bracket
-[]	¡æ  Bracket
-{	¡æ  Left Brace
-}	¡æ  Right Brace
-{}	¡æ  Brace   		¡Ø  º¹¼ö ÇüÅÂ·Î »ç¿ëÇÏÁö ¾ÊÀ½
-;	¡æ  Semicolon
-:	¡æ  Colon
-"	¡æ  Quotation Mark (Double Quotation)
-'	¡æ  Apostrophe (Quotation)
-,	¡æ  Comma
-.	¡æ  Period, Full Stop, Dot
-<	¡æ  Less Than Sign, Left Angle Bracket
->	¡æ  Greater Than Sign, Right Angle Bracket
-<>	¡æ  Angle Brackets
-/	¡æ  Slash, Virgule
-\	¡æ  Back Slash, Won Sign
-?	¡æ  Question Mark
-°ø¹é	¡æ  Space
+'	â†’  Grave
+~	â†’  Tilde
+!	â†’  Exclamation Point
+@	â†’  At sign, Commercial At
+#	â†’  Crosshatch, Sharp, Pound Sign
+$	â†’  Dollar Sign
+%	â†’  Percent Sign
+^	â†’  Circumflex  ***
+&	â†’  Ampersand
+*	â†’  Asterisk
+(	â†’  Left Parenthesis
+)	â†’  Right Parenthesis
+()	â†’  Parentheses   	â€» ë³µìˆ˜í˜• - ses
+-	â†’  Hyphen, Dash, Minus Sign
+_	â†’  Underscore, Underline
+=	â†’  Equal Sign
++	â†’  Plus Sign
+|	â†’  Vertical Bar 	â€» ëŒê¼´ì— ì˜í–¥ 
+[	â†’  Left Bracket
+]	â†’  Right Bracket
+[]	â†’  Bracket
+{	â†’  Left Brace
+}	â†’  Right Brace
+{}	â†’  Brace   		â€»  ë³µìˆ˜ í˜•íƒœë¡œ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+;	â†’  Semicolon
+:	â†’  Colon
+"	â†’  Quotation Mark (Double Quotation)
+'	â†’  Apostrophe (Quotation)
+,	â†’  Comma
+.	â†’  Period, Full Stop, Dot
+<	â†’  Less Than Sign, Left Angle Bracket
+>	â†’  Greater Than Sign, Right Angle Bracket
+<>	â†’  Angle Brackets
+/	â†’  Slash, Virgule
+\	â†’  Back Slash, Won Sign
+?	â†’  Question Mark
+ê³µë°±	â†’  Space

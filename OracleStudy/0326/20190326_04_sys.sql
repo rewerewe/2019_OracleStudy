@@ -1,25 +1,25 @@
---¡Û Á¢¼ÓµÈ »ç¿ëÀÚ Á¶È¸
+--â—‹ ì ‘ì†ëœ ì‚¬ìš©ìž ì¡°íšŒ
 SELECT USER
 FROM DUAL;
---==>>  Ãâ·Â :     SYS
+--==>>  ì¶œë ¥ :     SYS
 
 
---¡Û ¿À¶óÅ¬ »ç¿ëÀÚ °èÁ¤ »ý¼º(SCOTT)
+--â—‹ ì˜¤ë¼í´ ì‚¬ìš©ìž ê³„ì • ìƒì„±(SCOTT)
 CREATE USER SCOTT
 IDENTIFIED BY tiger;
---==>>  Ãâ·Â :    User SCOTTÀÌ(°¡) »ý¼ºµÇ¾ú½À´Ï´Ù.
+--==>>  ì¶œë ¥ :    User SCOTTì´(ê°€) ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤.
 
 
---¡Û »ý¼ºµÈ ¿À¶óÅ¬ »ç¿ëÀÚ(SCOTT)¿¡°Ô ±ÇÇÑ ºÎ¿©
+--â—‹ ìƒì„±ëœ ì˜¤ë¼í´ ì‚¬ìš©ìž(SCOTT)ì—ê²Œ ê¶Œí•œ ë¶€ì—¬
 GRANT CONNECT,RESOURCE,UNLIMITED TABLESPACE TO SCOTT;
---==>>  Ãâ·Â :    GrantÀ»(¸¦) ¼º°øÇß½À´Ï´Ù.
+--==>>  ì¶œë ¥ :    Grantì„(ë¥¼) ì„±ê³µí–ˆìŠµë‹ˆë‹¤.
 
 
---¡Û »ý¼ºµÈ ¿À¶óÅ¬ »ç¿ëÀÚ(SCOTT)¿¡°Ô ±âº» Å×ÀÌºí½ºÆäÀÌ½º ¼³Á¤
+--â—‹ ìƒì„±ëœ ì˜¤ë¼í´ ì‚¬ìš©ìž(SCOTT)ì—ê²Œ ê¸°ë³¸ í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ ì„¤ì •
 ALTER USER SCOTT DEFAULT TABLESPACE USERS;
---==>>  Ãâ·Â :    User SCOTTÀÌ(°¡) º¯°æµÇ¾ú½À´Ï´Ù.  
+--==>>  ì¶œë ¥ :    User SCOTTì´(ê°€) ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.  
 
 
---¡Û »ý¼ºµÈ ¿À¶óÅ¬ »ç¿ëÀÚ(SCOTT)¿¡°Ô ÀÓ½Ã Å×ÀÌºí½ºÆäÀÌ½º ¼³Á¤ 
+--â—‹ ìƒì„±ëœ ì˜¤ë¼í´ ì‚¬ìš©ìž(SCOTT)ì—ê²Œ ìž„ì‹œ í…Œì´ë¸”ìŠ¤íŽ˜ì´ìŠ¤ ì„¤ì • 
 ALTER USER SCOTT TEMPORARY TABLESPACE TEMP;
---==>>  Ãâ·Â :    User SCOTTÀÌ(°¡) º¯°æµÇ¾ú½À´Ï´Ù.
+--==>>  ì¶œë ¥ :    User SCOTTì´(ê°€) ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.
