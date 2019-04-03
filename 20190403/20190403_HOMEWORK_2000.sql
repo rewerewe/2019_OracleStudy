@@ -183,6 +183,7 @@ FROM TBL_INSA;
 
 
 --01. TBL_INSA 테이블 전체자료 조회
+;
 SELECT *
 FROM TBL_INSA;
 
@@ -195,12 +196,14 @@ FROM TBL_INSA;
 
 
 --03. TBL_INSA 테이블 구조 확인
+;
 DESC TBL_INSA;
 
 
 
 
 --04. TBL_INSA 테이블의 이름(NAME), 기본급(BASICPAY) 조회
+;
 SELECT NAME AS "이름", BASICPAY AS "기본급"
 FROM TBL_INSA;
 
@@ -208,6 +211,7 @@ FROM TBL_INSA;
 
 
 --05. TBL_INSA 테이블의 이름(NAME), 기본급(BASICPAY), 수당(SUDANG), 기본급+수당 조회
+;
 SELECT NAME AS "이름", BASICPAY AS "기본급", SUDANG AS "수당", (BASICPAY+SUDANG) AS "기본급+수당"
 FROM TBL_INSA;
 
@@ -216,6 +220,7 @@ FROM TBL_INSA;
 
 --06. TBL_INSA 테이블의 이름(NAME), 출신도(CITY), 부서명(BUSEO) 조회. 별칭(ALIAS) 사용.
 --(1) AS 사용 
+;
 SELECT NAME AS "이름", CITY AS "출신도", BUSEO AS "부서명"
 FROM TBL_INSA;
 
@@ -223,6 +228,7 @@ FROM TBL_INSA;
 
 
 --(2) AS 생략(가능)
+;
 SELECT NAME "이름", CITY "출신도", BUSEO "부서명"
 FROM TBL_INSA;
 
@@ -230,6 +236,7 @@ FROM TBL_INSA;
 
 
 --(3) " " 큰따옴표 생략가능
+;
 SELECT NAME 이름, CITY 출신도, BUSEO 부서명
 FROM TBL_INSA;
 
@@ -237,6 +244,7 @@ FROM TBL_INSA;
 
 
 --07. 서울 사람의 이름(NAME), 출신도(CITY), 부서명(BUSEO), 직위(JIKWI) 조회
+;
 SELECT NAME AS "이름", CITY AS "출신도", BUSEO AS "부서명", JIKWI AS "직위"
 FROM TBL_INSA
 WHERE CITY = '서울';
@@ -247,6 +255,7 @@ WHERE CITY = '서울';
 --08. 출신도가 서울 사람이면서       --> WHERE 구문
 --    기본급이 150만원 이상인 사람   --> WHERE 구문
 --    조회 (NAME, CITY, BASICPAY, SSN)
+;
 SELECT NAME AS "이름", CITY AS "출신도", BUSEO AS "부서명", JIKWI AS "직위" 
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -256,6 +265,7 @@ WHERE CITY = '서울'
 
 
 -- 09. 출신도가 '인천' 이면서, 기본급이 100만원이상 ~ 200만원 미만인 경우만 모든정보 조회.
+;
 SELECT *
 FROM TBL_INSA
 WHERE CITY = '인천'
@@ -266,6 +276,7 @@ WHERE CITY = '인천'
 
 
 -- 10. 출신도가 서울 사람이거나 부서가 개발부인 자료 조회 (NAME, CITY, BUSEO)
+;
 SELECT NAME, CITY, BUSEO
 FROM TBL_INSA
 WHERE CITY = '서울' 
@@ -275,6 +286,7 @@ WHERE CITY = '서울'
 
 
 --11. 출신도가 서울, 경기인 사람만 조회 (NAME, CITY, BUSEO). IN 연산자 사용.
+;
 SELECT NAME, CITY, BUSEO
 FROM TBL_INSA
 WHERE CITY IN ('서울', '경기');
@@ -283,6 +295,7 @@ WHERE CITY IN ('서울', '경기');
 
 
 --12. 부서가 '개발부' 이거나 '영업부'인 사원의 모든정보 조회. IN 연산자 사용.
+;
 SELECT *
 FROM TBL_INSA
 WHERE BUSEO IN ('개발부', '영업부');
@@ -293,6 +306,7 @@ WHERE BUSEO IN ('개발부', '영업부');
 --13. 급여(BASICPAY + SUDANG)가 250만원 이상인 사람 조회. --> WHERE 구문
 --    단, 필드명은 한글로 출력. --> 별칭(ALIAS)
 --    (NAME, BASICPAY, SUDANG, BASICPAY+SUDANG)
+;
 SELECT NAME "이름", BASICPAY "기본급", SUDANG "수당", (BASICPAY+SUDANG) "급여" 
 FROM TBL_INSA
 WHERE (BASICPAY+SUDANG) >= 2500000
@@ -302,6 +316,7 @@ ORDER BY 4;
 --14. 주민번호를 기준으로 남자(성별 자릿수가 1, 3)만 조회. 
 --    ( 이름(NAME), 주민번호(SSN) )
 --    단, SUBSTR() 함수 이용.
+;
 SELECT NAME "이름", SSN "주민번호"
 FROM TBL_INSA
 WHERE SUBSTR(SSN, 8, 1) = '1'
@@ -312,6 +327,7 @@ WHERE SUBSTR(SSN, 8, 1) = '1'
 
 --15. 주민번호를 기준으로 80년대 태어난 사람만 조회. 
 --    ( 이름(NAME), 주민번호(SSN) )
+;
 SELECT NAME "이름", SSN "주민번호"
 FROM TBL_INSA
 WHERE (SUBSTR(SSN, 1, 2) >= 80 AND SUBSTR(SSN, 1, 2) < 90);
@@ -320,6 +336,7 @@ WHERE (SUBSTR(SSN, 1, 2) >= 80 AND SUBSTR(SSN, 1, 2) < 90);
 
 
 --16. 서울 사람 중에서 70년대 태어난 사람만 조회. SUBSTR() 함수 이용.
+;
 SELECT *
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -329,6 +346,7 @@ WHERE CITY = '서울'
 
 
 --17. 서울 사람 중에서 70년대 태어난 남자만 조회. SUBSTR() 함수 이용.
+;
 SELECT *
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -342,6 +360,7 @@ WHERE CITY = '서울'
 --    단, 성씨가 한 글자라는 가정. 
 --    ( 이름, 출신도 )
 --    SUBSTR() 함수 이용.
+;
 SELECT NAME "이름", CITY "출신도"
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -349,6 +368,7 @@ WHERE CITY = '서울'
   
   
 --19. 2000년도에 입사한 사람 조회. (이름, 출신도, 입사일).
+;
 SELECT NAME "이름", CITY "출신도", IBSADATE "입사일"
 FROM TBL_INSA
 WHERE TO_CHAR(IBSADATE, 'YYYY') = '2000';
@@ -357,6 +377,7 @@ WHERE TO_CHAR(IBSADATE, 'YYYY') = '2000';
 
 
 --20. 2000년 10월에 입사한 사람 조회. (이름, 출신도, 입사일).
+;
 SELECT NAME "이름", CITY "출신도", IBSADATE "입사일"
 FROM TBL_INSA
 WHERE TO_CHAR(IBSADATE, 'YYYY-MM') = '2000-10';
@@ -366,6 +387,7 @@ WHERE TO_CHAR(IBSADATE, 'YYYY-MM') = '2000-10';
 
 --21. 주민번호를 기준으로 직원의 나이 조회.
 --    단, 모든 직원이 1900년대에 태어났다는 가정. (이름, 주민번호, 나이)
+;
 SELECT NAME "이름"
      , SSN "주민번호"
      , CASE WHEN SUBSTR(SSN, 8, 1) IN ('1', '2')
@@ -378,6 +400,7 @@ FROM TBL_INSA;
 
 
 --22. 주민번호 기준으로 현재 나이대가 20대인 사람만 조회.
+;
 SELECT *
 FROM TBL_INSA
 WHERE SUBSTR(SSN, 1, 2) >= 90;
@@ -387,6 +410,7 @@ WHERE SUBSTR(SSN, 1, 2) >= 90;
 
 --23. 주민번호 기준으로 5월 생만 조회. 
 --    단, SUBSTR() 함수 이용.
+;
 SELECT *
 FROM TBL_INSA
 WHERE SUBSTR(SSN, 3, 2) = 05;
@@ -404,6 +428,7 @@ WHERE TO_CHAR(SSN)= '05';
 
 
 --25. 출신도 내림차순으로 정렬하고, 출신도가 같으면 기본급 내림차순 정렬 조회
+;
 SELECT *
 FROM TBL_INSA
 ORDER BY CITY DESC, BASICPAY DESC;
@@ -413,6 +438,7 @@ ORDER BY CITY DESC, BASICPAY DESC;
 
 --26. 서울 사람 중에서 기본급+수당(→급여) 내림차순으로 정렬.
 --    ( 이름, 출신도, 기본급+수당 )
+;
 SELECT NAME "이름", CITY "출신도", (BASICPAY+SUDANG) "급여"
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -423,6 +449,7 @@ ORDER BY 3 DESC;
 
 --27. 여자 중 부서 오름차순으로 정렬하고, 부서가 같으면 기본급 내림차순 정렬. 
 --    ( 이름, 주민번호, 부서, 기본급 )
+;
 SELECT NAME "이름", SSN "주민번호", BUSEO "부서", BASICPAY "기본급"
 FROM TBL_INSA
 WHERE SUBSTR(SSN, 8, 1) IN ('2','4')
@@ -433,6 +460,7 @@ ORDER BY 3, 4 DESC;
 
 --28. 남자 중 나이를 기준으로 오름차순 정렬하여 조회.
 --    (27 번과 동일한 컬럼으로 조회) 
+;
 SELECT NAME "이름", SSN "주민번호", BUSEO "부서", BASICPAY "기본급"
       , CASE WHEN SUBSTR(SSN, 8, 1) IN ('1','3') 
              THEN EXTRACT(YEAR FROM SYSDATE) - TO_NUMBER(SUBSTR(SSN, 1, 2) + 1899)
@@ -446,6 +474,7 @@ ORDER BY 5;
 
 
 --29. 서울 지역 사람들 중에서 입사일이 빠른 사람을 먼저 볼 수 있도록 조회.
+;
 SELECT *
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -457,6 +486,7 @@ ORDER BY 4;
 --30. 성씨가 김씨가 아닌 사람 조회. 
 --    단, 성씨는 한 글자라고 가정.
 --    ( 이름, 출신도, 기본급 ).
+;
 SELECT NAME "이름", CITY "출신도", BASICPAY"기본급"
 FROM TBL_INSA
 WHERE SUBSTR(NAME, 1, 1) != '김'
@@ -477,6 +507,7 @@ ORDER BY 1;
 
 --32. 전화번호가 있으면 '-'을 제거하여 조회하고, 
 --    없으면 '전화번호없음'으로 조회.
+;
 SELECT CASE  WHEN TEL IS NOT NULL
                 THEN REPLACE(TEL, '-', '')
              WHEN TEL IS NULL
@@ -503,6 +534,7 @@ FROM TBL_INSA;
 --33. TBL_INSA 테이블에서 BASICPAY + SUDANG 이 
 --    100만원 미만, 100만원 이상~200만원 미만, 
 --    200만원 이상인 직원들의 수 조회.
+;
 SELECT T.급여 "급여" 
       , COUNT(*) "직원수"
     FROM          
@@ -516,6 +548,7 @@ GROUP BY ROLLUP(T.급여);
 
 
 --34. TBL_INSA 테이블에서 주민번호를 가지고 생년월일의 년도별 직원수 조회.
+;
 SELECT T.생년 "태어난연도", COUNT(T.생년) "인원수"
     FROM
     (
@@ -529,6 +562,7 @@ GROUP BY ROLLUP(T.생년);
 
 --35. 주민번호를 기준으로 월별 오름차순, 월이 같으면 년도 내림차순 조회.
 --    (이름, 주민번호)
+;
 SELECT T.NAME "이름", T.SSN "주민번호"
 FROM
     (
@@ -543,6 +577,7 @@ ORDER BY T.월, T.연도 DESC;
 --36. 입사일을 기준으로  월별 오름차순, 월이 같으면 년도 내림차순 조회.
 --    단, 모든 정보 조회.
 --    (주의. 입사일은 자료형이 DATE이다.)
+;
 SELECT T.NUM, T.NAME, T.SSN, T.IBSADATE, T.CITY, T.TEL, T.BUSEO, T.JIKWI, T.BASICPAY, T.SUDANG 
     FROM 
     (
@@ -556,6 +591,7 @@ ORDER BY T.입사월, T.입사년도 DESC;
 
 
 --37. 전체인원수, 남자인원수, 여자인원수를 동시 조회.
+;
 SELECT DECODE(T.성별, NULL, '전체인원수', T.성별) "성별"
      , COUNT(T.성별) "인원수"
     FROM
@@ -574,6 +610,7 @@ GROUP BY ROLLUP(T.성별);
 
 
 --38. 개발부, 영업부, 총무부 인원수 조회.  COUNT(), DECODE() 함수 이용.
+;
 SELECT BUSEO "부서", DECODE(BUSEO,'개발부', COUNT(0), '영업부', COUNT(0), '총무부', COUNT(0), 0) "부서별 인원수"
 FROM TBL_INSA
 WHERE BUSEO = '개발부'
@@ -585,6 +622,7 @@ GROUP BY BUSEO;
 
 
 --39. 서울 사람의 남자 인원수 조회.
+;
 SELECT COUNT(*) "서울남자인원수"
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -594,6 +632,7 @@ WHERE CITY = '서울'
 
 
 --40. 부서가 영업부이고, 남자 인원수, 여자 인원수 조회.  COUNT(), DECODE() 함수 이용.
+;
 SELECT T.부서 "부서"
       ,COUNT(DECODE(T.성별,'남자',1,NULL))"남자인원수"
       ,COUNT(DECODE(T.성별,'여자',1,NULL))"여자인원수"
@@ -616,6 +655,7 @@ GROUP BY T.부서;
 
 
 --41. 개발부, 영업부, 총무부 인원수 조회. 단, 지역은 '서울'로 한정.
+;
 SELECT BUSEO "부서" , COUNT(BUSEO)"인원수"
 FROM TBL_INSA
 WHERE CITY = '서울'
@@ -628,6 +668,7 @@ GROUP BY BUSEO;
 
 
 --42. 서울 사람의 남자와 여자의 기본급합 조회.
+;
 SELECT T.성별 "성별" 
      , SUM(T.기본급) "기본급합"
     FROM 
@@ -646,8 +687,8 @@ GROUP BY T.성별;
 
 
 
-
 --43. 남자와 여자의 기본급 평균값 조회. AVG(), DECODE() 함수 이용.
+;
 SELECT T.성별 "성별"
      , DECODE(T.성별,'남자', AVG(T.기본급), '여자', AVG(T.기본급), NULL) "기본급평균값"
     FROM
@@ -664,9 +705,8 @@ SELECT T.성별 "성별"
 GROUP BY T.성별;
 
 
-
-
 --44. 개발부의 남자, 여자 기본급 평균값 조회.
+;
 SELECT T.성별 "성별"
      , DECODE(T.성별,'남자', AVG(T.기본급), '여자', AVG(T.기본급), NULL) "기본급평균값"
     FROM
@@ -685,6 +725,7 @@ GROUP BY T.성별;
 
 
 --45. 부서별 남자와 여자 인원수 구하기
+;
 SELECT T.부서 "부서"
      , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
      , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -704,6 +745,7 @@ GROUP BY (T.부서);
 
 
 --46. 지역별 남자와 여자 인원수 구하기
+;
 SELECT NVL(T.지역, '전체') "출신지역"
      , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
      , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -723,6 +765,7 @@ GROUP BY ROLLUP(T.지역);
 
 
 --47. 입사년도별 남자와 여자 인원수 구하기
+;
 SELECT T.입사년도 "입사년도"
       , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
       , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -742,6 +785,7 @@ GROUP BY T.입사년도;
 
 
 --48. 영업부, 총무부 인원만을 가지고 입사년도별 남자와 여자 인원수 구하기
+;
 SELECT T.입사년도 "입사년도"
       , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
       , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -765,6 +809,7 @@ ORDER BY T.입사년도;
 
 
 --49. 서울 사람중 부서별 남자와 여자인원수, 남자와 여자 급여합 조회.
+;
 SELECT T.부서 "부서"
       , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
       , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -788,6 +833,7 @@ GROUP BY T.부서;
 
 
 --50. 부서별 인원수 출력. 인원수가 10 이상인 경우만.
+;
 SELECT BUSEO "부서", COUNT(*)"인원수"
 FROM TBL_INSA
 GROUP BY BUSEO
@@ -795,6 +841,7 @@ HAVING COUNT(*) > 10;
 
 
 --51. 부서별 남,여 인원수 출력. 여자인원수가 5명 이상인 부서만 조회.
+;
 SELECT T.부서 "부서"
       , COUNT(DECODE(T.성별, '남자', 1, NULL)) "남자인원수"
       , COUNT(DECODE(T.성별, '여자', 1, NULL)) "여자인원수"
@@ -812,6 +859,7 @@ HAVING COUNT(DECODE(T.성별, '여자', 1, NULL)) > 5;
 --52. 이름, 성별, 나이 조회
 --    성별: 주민번호 활용 1,3 → 남자, 2,4 → 여자 (DECODE() 사용)
 --    나이: 주민번호 활용
+;
 SELECT NAME "이름"
       , DECODE(SUBSTR(SSN, 8, 1), 1, '남자', 3, '남자', 2, '여자', 4, '여자', '확인불가') "성별"
       , TO_NUMBER(TO_CHAR(SYSDATE, 'YYYY')) - (TO_NUMBER(SUBSTR(SSN, 1, 2)) + 1899) "나이"
@@ -819,6 +867,7 @@ FROM TBL_INSA;
 
 
 --53. 서울 사람 중에서 기본급이 200만원 이상인 사람 조회. ( 이름, 기본급 )
+;
 SELECT NAME "이름", BASICPAY "기본급"
 FROM TBL_INSA
 WHERE CITY='서울'
@@ -830,6 +879,7 @@ WHERE CITY='서울'
 --     월  인원수
 --    1월    10명
 --    2월    25명
+;
 SELECT CONCAT(TO_CHAR(IBSADATE, 'MM'),'월') "입사월"
       , CONCAT(TO_CHAR(COUNT(*)), '명') "인원수"
 FROM TBL_INSA
@@ -840,6 +890,7 @@ ORDER BY 1;
 --55. 이름, 생년월일, 기본급, 수당을 조회.
 --    생년월일은 주민번호 기준 (2000-10-10 형식으로 출력)
 --    기본급은 \1,000,000 형식으로 출력
+;
 SELECT T.이름 AS 이름
       , (T.생년||'-'||T.월||'-'||T.일) AS 생년월일
       , T.기본급 AS 기본급
@@ -858,18 +909,21 @@ FROM
 
 --56. 이름, 출신도, 기본급을 조회하되 출신도 내림차순 출력(1차 정렬 기준).
 --    출신도가 같으면 기본급 오름차순 출력(2차 정렬 기준).
+;
 SELECT NAME AS 이름, CITY AS 출신도시, BASICPAY AS 기본급
 FROM TBL_INSA
 ORDER BY 2 DESC, 3;
 
 
 --57. 전화번호가 NULL이 아닌것만 조회. (이름, 전화번호)
+;
 SELECT NAME AS 이름, TEL AS 전화번호 
 FROM TBL_INSA
 WHERE TEL IS NOT NULL;
 
 
 --58. 근무년수가 10년 이상인 사람 조회. (이름, 입사일)
+;
 SELECT T.이름 AS 이름
       , T.근무년수 AS 근무년수
     FROM
@@ -890,6 +944,7 @@ FROM TBL_INSA;
 
 
 --60. 근무년수가 5~10년인 사람 조회. (이름, 입사일)
+;
 SELECT T.이름 AS 이름
       , T.근무년수 AS 근무년수
     FROM
@@ -902,206 +957,335 @@ WHERE T.근무년수 >= 5
   AND T.근무년수 <= 10;
 
 
-61. 김씨, 이씨, 박씨만 조회 (이름, 부서). SUBSTR() 함수 이용.
-
-SELECT SUBSTR(
+--61. 김씨, 이씨, 박씨만 조회 (이름, 부서). SUBSTR() 함수 이용.
+;
+SELECT NAME AS 이름, BUSEO AS 부서
 FROM TBL_INSA
+WHERE SUBSTR(NAME, 1, 1) IN ('김', '이', '박')
+;
 
 
-
-62. 입사일을 "년-월-일 요일" 형식으로 남자만 조회 (이름, 주민번호, 입사일)
-
-
-
-
-63. 부서별 직위별 급여합 구하기. (부서, 직위, 급여합)
-
+--62. 입사일을 "년-월-일 요일" 형식으로 남자만 조회 (이름, 주민번호, 입사일)
+;
+SELECT NAME AS 이름, SSN AS 주민번호, TO_CHAR(IBSADATE, 'YYYY-MM-DD DAY') AS 입사일
+FROM TBL_INSA
+WHERE SUBSTR(SSN, 8, 1) IN ('1','3')
+;
 
 
+--63. 부서별 직위별 급여합 구하기. (부서, 직위, 급여합)
+;
+SELECT BUSEO AS 부서
+      , JIKWI AS 직위
+      , SUM(BASICPAY+SUDANG) AS 급여합
+FROM TBL_INSA
+GROUP BY BUSEO, JIKWI
+ORDER BY 1, DECODE(JIKWI, '부장', 1, '과장', 2, '대리', 3, '사원', 4, 5)
+;
 
-64. 부서별 직위별 인원수, 급여합, 급여평균 구하기. (부서, 직위, 급여합)
+SELECT SUM(BASICPAY)
+FROM TBL_INSA
+WHERE 1=1
+AND BUSEO = '영업부'
+AND JIKWI = '대리'
+;
+
+--64. 부서별 직위별 인원수, 급여합, 급여평균 구하기. (부서, 직위, 급여합)
+;
+SELECT BUSEO AS 부서
+      , JIKWI AS 직위 
+      , COUNT(*) AS 인원수
+      , SUM(BASICPAY+SUDANG) AS 급여합
+      , ROUND(AVG(BASICPAY+SUDANG),2) AS 급여평균
+FROM TBL_INSA
+GROUP BY BUSEO, JIKWI
+ORDER BY 1, DECODE(JIKWI, '부장', 1, '과장', 2, '대리', 3, '사원', 4, 5)
+;
 
 
-
-
-65. 부서별 직위별 인원수를 구하되 인원수가 5명 이상인 경우만 조회.
-
-
+--65. 부서별 직위별 인원수를 구하되 인원수가 5명 이상인 경우만 조회.
+;
+SELECT BUSEO AS 부서
+      , JIKWI AS 직위 
+      , COUNT(*) AS 인원수
+FROM TBL_INSA
+GROUP BY BUSEO, JIKWI
+HAVING COUNT(*) >= 5
+ORDER BY 1, DECODE(JIKWI, '부장', 1, '과장', 2, '대리', 3, '사원', 4, 5)
+;
 
 
 --66. 2000년에 입사한 여사원 조회. (이름, 주민번호, 입사일)
-SELECT T.NAME "이름", T.SSN "주민번호", T.IBSADATE "입사일"
+SELECT T.NAME AS 이름
+      , T.SSN AS 주민번호
+      , T.IBSADATE AS 입사일
 FROM
 (
-    SELECT NAME, SSN, IBSADATE
-          , EXTRACT(YEAR FROM IBSADATE) "입사연도"
+    SELECT NAME 
+          , SSN
+          , IBSADATE
+          , EXTRACT(YEAR FROM IBSADATE) AS 입사연도
     FROM TBL_INSA
-)T
+) T
 WHERE T.입사연도 = '2000'
   AND SUBSTR(SSN, 8, 1) IN ('2','4');
 
 
+--67. 성씨가 한 글자(김, 이, 박 등)라는 가정하에 성씨별 인원수 조회 (성씨, 인원수)
+;
+SELECT SUBSTR(NAME, 1, 1) "성씨"
+      , COUNT (*) "인원수"
+FROM TBL_INSA
+GROUP BY SUBSTR(NAME, 1, 1) 
+ORDER BY 1;
 
 
-67. 성씨가 한 글자(김, 이, 박 등)라는 가정하에 성씨별 인원수 조회 (성씨, 인원수)
+--68. 출신도(CITY)별 성별 인원수 조회.
+;
+SELECT CITY AS 출신도 
+      , COUNT(DECODE(T.성별, '남자', 1, NULL)) AS 남자인원수
+      , COUNT(DECODE(T.성별, '여자', 1, NULL)) AS 여자인원수
+FROM
+(
+    SELECT DECODE(SUBSTR(SSN, 8, 1), 1, '남자', 3, '남자',
+                                      2, '여자', 4, '여자', '확인불가')  AS 성별
+          , CITY
+    FROM TBL_INSA
+) T
+GROUP BY CITY;
 
 
+--69. 부서별 남자인원수가 5명 이상인 부서와 남자인원수 조회.
+;
+SELECT T.BUSEO AS 부서
+      , COUNT(DECODE(T.성별, '남자', 1, NULL)) AS 남자인원수 
+FROM
+(
+    SELECT DECODE(SUBSTR(SSN, 8, 1), 1, '남자', 3, '남자',
+                                      2, '여자', 4, '여자', '확인불가')  AS 성별
+          , BUSEO
+    FROM TBL_INSA
+) T
+GROUP BY T.BUSEO
+HAVING COUNT(DECODE(T.성별, '남자', 1, NULL)) >= 5
+;
+
+--70. 입사년도별 인원수 조회.
+;
+SELECT TO_CHAR(IBSADATE, 'YYYY') AS 입사년도    
+      , COUNT(*) AS 인원수 
+FROM TBL_INSA
+GROUP BY TO_CHAR(IBSADATE, 'YYYY')
+ORDER BY 1;
 
 
-68. 출신도(CITY)별 성별 인원수 조회.
+--71. 전체인원수, 2000년, 1999년, 1998년도에 입사한 인원을 다음의 형식으로 조회.
+--    출력형태 ---------------    
+--    전체 2000 1999 1998
+--      60    x    x    x
+;
 
-
-
-
-69. 부서별 남자인원수가 5명 이상인 부서와 남자인원수 조회.
-
-
-
-
-70. 입사년도별 인원수 조회.
-
-
-
-
-71. 전체인원수, 2000년, 1999년, 1998년도에 입사한 인원을 다음의 형식으로 조회.
-    출력형태 ---------------    
-    전체 2000 1999 1998
-      60    x    x    x
-
-
-
+SELECT TO_CHAR(IBSADATE, 'YYYY') AS 입사년도 
+--     , TO_CHAR(IBSAFATE, 'YYYY') = '2000' AS 2000
+--      , COUNT(2000)
+--      , TO_CHAR(IBSAFATE, 'YYYY') = '1999' AS 1999
+FROM TBL_INSA
+;
 
 72. 아래 형식으로 지역별 인원수 조회.
     출력형태 -----------------
     전체 서울  인천  경기
       60    x     x     x
-
+;
 
 
 
 73. 기본급(BASICPAY)이 평균 이하인 사원 조회. (이름, 기본급). AVG() 함수. 서브쿼리.
-
-
-
+;
+SELECT T.NAME AS 이름
+      , T.BASICPAY AS 기본급
+FROM
+(
+    SELECT AVG(BASICPAY) AS 기본급평균
+          , NAME
+          , BASICPAY
+    FROM TBL_INSA
+) T
+GROUP BY T.BASICPAY 
+HAVING T.기본급평균 > T.BASICPAY
+;
 
 74. 기본급 상위 10%만 조회. (이름, 기본급)
-
+;
 
 
 
 75. 기본급 순위가 5순위까지만 조회. (모든 정보)
-
-
+;
+SELECT BASICPAY AS 기본급
+      , RANK() OVER(ORDER BY BASICPAY DESC) AS 기본급순위
+FROM TBL_INSA
+WHERE 기본급순위 < 5;
 
 
 76. 입사일이 빠른 순서로 5순위까지만 조회. (모든 정보)
-
+;
 
 
 
 77. 평균 급여보다 많은 급여를 받는 직원 정보 조회. (모든 정보)
-
+;
 
 
 
 78. '이순애' 직원의 급여보다 더 많은 급여를 받는 직원 조회. (모든 정보)
     단, 이순애 직원의 급여가 변하더라도 작성된 쿼리문은 기능 수행이 가능하도록 조회.
-
+;
 
 
 
 79. 총무부의 평균 급여보다 많은 급여를 받는 직원들의 이름, 부서명 조회.
-
+;
 
 
 
 80. 총무부 직원들의 평균 수당보다 더 많은 수당을 받는 직원 정보 조회.
-
+;
 
 
 
 81. 직원 전체 평균 급여보다 많은 급여를 받는 직원의 수 조회.
-
+;
 
 
 
 82. '홍길동' 직원과 같은 부서의 직원 정보 조회.
     단, 홍길동 직원의 부서가 바뀌더라도 작성된 쿼리문은 기능 수행이 가능하도록 조회.
+;
 
-
-
+SELECT *
+FROM TBL_INSA
+WHERE NAME = '홍길동';
 
 83. '김신애' 직원과 같은 부서, 직위를 가진 직원 정보 조회.
     단, 김신애 직원의 부서 및 직위가 바뀌더라도 작성된 쿼리문은 기능 수행이 가능하도록 조회.
-
+;
 
 
 
 84. 부서별 기본급이 가장 높은 사람 조회. (이름, 부서, 기본급)
     단, 사원들의 기본급이 변경되더라도 작성된 쿼리문은 기능 수행이 가능하도록 조회.
-
+;
 
 
 
 85. 남, 여별 기본급 순위 조회.
-
+;
 
 
 
 86. 지역(CITY)별로 급여(기본급+수당) 1순위 직원만 조회.
-
+;
 
 
 
 87. 부서별 인원수가 가장 많은 부서 및 인원수 조회.
-
-
-
+;
+SELECT BUSEO, COUNT(*)
+FROM TBL_INSA
+GROUP BY BUSEO;
 
 88. 지역(CITY)별 인원수가 가장 많은 지역 및 인원수 조회.
-
-
+;
+SELECT CITY, MAX(COUNT(*))
+FROM TBL_INSA
+GROUP BY CITY;
 
 
 89. 지역(CITY)별 평균 급여(BASICPAY + SUDANG)가
     가장 높은 지역 및 평균급여 조회.
-
+;
 
 
 
 90. 여자 인원수가 가장 많은 부서 및 인원수 조회.
+;
 
 
 
+--91. 지역별 인원수 순위 조회.
+;
+SELECT CITY AS 지역
+      , RANK() OVER(ORDER BY COUNT(*) DESC) AS 지역별인원순위
+      , COUNT(*) AS 인원수 
 
-91. 지역별 인원수 순위 조회.
-
-
-
+FROM TBL_INSA
+GROUP BY CITY
+;
 
 92. 지역별 인원수 순위 조회하되 5순위까지만 출력.
+;
 
 
-
-
-93. 이름, 부서, 출신도, 기본급, 수당, 기본급+수당, 세금, 실수령액 조회
-    단, 세금: 총급여가 250만원 이상이면 2%, 200만원 이상이면 1%, 나머지 0.
-    실수령액: 총급여-세금
-
-
+--93. 이름, 부서, 출신도, 기본급, 수당, 기본급+수당, 세금, 실수령액 조회
+--    단, 세금: 총급여가 250만원 이상이면 2%, 200만원 이상이면 1%, 나머지 0.
+--    실수령액: 총급여-세금
+;
+SELECT  T."이름", T."부서", T."출신도", T."기본급", T."수당", T."급여", T."세금"
+      , (T.급여 - T.세금) "실수령액"
+FROM 
+(
+    SELECT NAME AS "이름"
+          , BUSEO AS "부서"
+          , CITY AS "출신도"
+          , BASICPAY AS "기본급"
+          , SUDANG AS "수당"
+          , BASICPAY+SUDANG AS "급여"
+          , CASE WHEN (BASICPAY+SUDANG) > 2500000 
+                    THEN  (BASICPAY+SUDANG) * 0.02
+                  WHEN (BASICPAY+SUDANG) > 2000000 
+                    THEN  (BASICPAY+SUDANG) * 0.01
+                 ELSE 0
+            END "세금"
+    FROM TBL_INSA
+) T
+;
 
 
 94. 부서별 평균 급여를 조회하되, A, B, C 등급으로 나눠서 출력.
     200만원 초과 - A등급
     150~200만원  - B등급
     150만원 미만 - C등급
+;
+SELECT T.부서 AS "부서"
+      , AVG(T.급여) AS "평균급여"
+      , T.급여등급 AS "급여등급"
+FROM
+(
+    SELECT BUSEO AS "부서"
+          , (BASICPAY+SUDANG) AS "급여" 
+          , CASE WHEN AVG(BASICPAY+SUDANG) >= 2000000 
+                      THEN 'A'
+                  WHEN AVG(BASICPAY+SUDANG) >= 1500000 AND AVG(BASICPAY+SUDANG) < 2000000 
+                      THEN 'B'
+                  WHEN AVG(BASICPAY+SUDANG) < 1500000   
+                      THEN 'C'
+                  ELSE 
+             END AS "급여등급"
+    FROM TBL_INSA
+) T
+GROUP BY T.부서;
 
 
 
+SELECT BUSEO
+, AVG(BASICPAY+SUDANG)
+FROM TBL_INSA
+HAVING AVG(BASICPAY+SUDANG);
 
 95. 기본급+수당이 가장 많은 사람의 이름, 기본급+수당 조회.
     MAX() 함수, 하위 쿼리 이용.
-
+;
 
 
 
