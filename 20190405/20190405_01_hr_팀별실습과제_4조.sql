@@ -29,29 +29,25 @@ SELECT *
 FROM VIEW_CONSTCHECK
 WHERE TABLE_NAME='JOBS';
 
+--뷰(VIEW) 테이블 생성
+CREATE OR REPLACE VIEW VIEW_CONSTCHECK
+AS
+SELECT UC.OWNER      "OWNER"
+, UC.CONSTRAINT_NAME  "CONSTRAINT_NAME"
+, UC.CONSTRAINT_TYPE  "CONSTRAINT_TYPE"
+, UC.TABLE_NAME       "TABLE_NAME"
+, UCC.COLUMN_NAME     "COLUMN_NAME"
+, UC.SEARCH_CONDITION "SEARCH_CONDITION"
+FROM USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+ON UC.CONSTRAINT_NAME = UCC.CONSTRAINT_NAME;
 
---■■■ 팀별 실습 과제 ■■■--
+--View VIEW_CONSTCHECK이(가) 생성되었습니다.
 
--- HR 샘플 스키마 ERD를 이용한 테이블 재구성
 
--- 팀별로 HR 스키마에 있는 기본 테이블(7개)
--- COUNTRIES / DEPARTMENTS / EMPLOYEES / JOB_HISTORY / JOBS
--- / LOCATIONS / REGIONS
--- 을 똑같이 새로 구성한다.(데이터도 다 똑같이 입력)
-
--- 단, 생성하는 테이블의 이름은 『테이블명+팀번호04』
--- COUNTRIES01 / DEPARTMENTS01 / EMPLOYEES01 / JOB_HISTORY01 / JOBS01
--- / LOCATIONS01 / REGIONS01
---                             :
-
--- 1. 기존 테이블의 정보 수집
--- 2. 테이블 생성(컬럼 이름, 자료형, DEFAULT 표현식, NOT NULL 등)
---    제약조건 설정(PK, UK, FK, CK, ... NN)
--- 3. 작성 후 데이터 입력
--- 4. 제출 항목
---    20190405_01_hr_팀별실습과제_4조.sql - 팀별로 조합해서 하나만 제출하면 OK
---    후기_4조.txt
---    (분담)
+SELECT *
+FROM USER_CONS_COLUMNS UCC;
+--USER_CONSTRAINTS UC JOIN USER_CONS_COLUMNS UCC
+;
 
 
 -- 테이블 생성
