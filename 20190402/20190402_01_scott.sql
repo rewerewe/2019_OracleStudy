@@ -74,8 +74,7 @@ GROUP BY DEPTNO;
 
 -- 스미스 사원의 급여 등수는?
 SELECT ENAME, SAL
-FROM EMP
-ORDER BY SAL;
+FROM EMP;
 
 SELECT COUNT(*) 
 FROM EMP
@@ -83,7 +82,7 @@ WHERE SAL > 800;
 --==>> 13 + 1 = 14 → SMITH 의 급여등수
 -- 급여가 800보다 많은 사람이 13명이다. 여기에 1을 더해주면?
 
-SELECT COUNT(*) + 1 "급여순위"
+SELECT COUNT(*) + 1
 FROM EMP
 WHERE SAL > 1600;
 --==>> 7 → ALLEN 의 급여등수   
@@ -106,9 +105,7 @@ FROM EMP;
 
 --2)
 SELECT ENAME "사원명", SAL "급여", (1)"급여등수"
-FROM EMP
-ORDER BY SAL DESC
-;
+FROM EMP;
 
 --3)
 SELECT ENAME "사원명", SAL "급여"
@@ -122,23 +119,7 @@ SELECT ENAME "사원명", SAL "급여"
      , (SELECT COUNT(*) + 1
         FROM EMP E2 
         WHERE E2.SAL > E1.SAL)"급여등수"
-FROM EMP E1
-ORDER BY SAL DESC
-;
-
-SELECT COUNT(*) + 1
-        FROM EMP E2 
-        WHERE E2.SAL > 800
-;
-
-SELECT A.ENAME, A.SAL, B.ENAME
-FROM EMP A, EMP B
-WHERE 1=1
-AND A.SAL > B.SAL
-AND A.ENAME = 'KING'
-;
-
---
+FROM EMP E1;
 /*
     SMITH	800	    14
     ALLEN	1600	7
