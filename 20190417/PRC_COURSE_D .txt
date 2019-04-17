@@ -1,0 +1,82 @@
+CREATE OR REPLACE PROCEDURE PRC_COURSE_D 
+(
+    V_COU_NAME_CODE     IN TBL_COURSE.COU_NAME_CODE%TYPE
+)
+IS
+    -- 과정 시작일을 담기 위한 변수 선언 
+    V_COURSE_START    TBL_OPENCOURSE.COU_START%TYPE;
+    V_COURSE_END      TBL_OPENCOURSE.COU_END%TYPE;  
+BEGIN
+    -- 개설 과정 테이블의 과정 시작일을 V_COURSE_START 변수에 담기
+    SELECT COU_START  INTO V_COURSE_START
+    FROM TBL_OPENCOURSE
+    WHERE COU_NAME_CODE = V_COU_NAME_CODE;
+        
+    SELECT COU_END  INTO V_COURSE_END
+    FROM TBL_OPENCOURSE
+    WHERE COU_NAME_CODE = V_COU_NAME_CODE;
+    
+    -- 1. 과정 개강 전이거나 과정이 끝난 이후 이면
+    IF (SYSDATE < V_COURSE_START AND SYSDATE > V_COURSE_END) 
+        THEN  
+        --  (1) 과정 테이블의 과정 데이터가 삭제된다.
+            DELETE
+            FROM TBL_COURSE
+            WHERE COU_NAME_CODE = V_COU_NAME_CODE;
+    
+    -- 2. 과정 개강 후
+    ELSE    
+        --  (1) 연관된 테이블의 데이터를 삭제하면,  
+    
+            --① 5레벨의 GIVEUP의 SUGANG_CODE ▶ 삭제 (자식)
+            DELETE
+            FROM TBL_GIVEUP
+            WHERE SUGANG_CODE IN (SELECT SUGANG_CODE
+                                   FROM TBL_SUGANG
+                                  WHERE OPEN_C_CODE IN (SELECT OPEN_C_CODE
+                                                         FROM TBL_OPENCOURSE
+                                                        WHERE COU_NAME_CODE = V_COU_NAME_CODE));
+                                                        
+            --② 5레벨의 SCORE의 SUB_CODE ▶ 삭제 (자식)
+            DELETE
+            FROM TBL_SCORE 
+            WHERE SUB_CODE IN (SELECT SUB_CODE
+                                FROM TBL_SUBJECT 
+                               WHERE OPEN_C_CODE IN (SELECT OPEN_C_CODE
+                                                      FROM TBL_OPENCOURSE
+                                                     WHERE COU_NAME_CODE = V_COU_NAME_CODE));
+                                                     
+            --③ 4레벨의 SUGANG의 OPEN_C_CODE ▶ 삭제 (자식)
+            DELETE
+            FROM TBL_SUGANG
+            WHERE OPEN_C_CODE IN (SELECT OPEN_C_CODE
+                                   FROM TBL_OPENCOURSE
+                                  WHERE COU_NAME_CODE = V_COU_NAME_CODE);
+        
+        
+
+                                                     
+        
+            --④ 3레벨의 SUBJECT의 OPEN_C_CODE ▶ 삭제 (자식)
+            DELETE
+            FROM TBL_SUBJECT
+            WHERE OPEN_C_CODE IN (SELECT OPEN_C_CODE
+                                   FROM TBL_OPENCOURSE
+                                  WHERE COU_NAME_CODE = V_COU_NAME_CODE);
+         
+            
+            --⑤ 2레벨의 OPENCOURSE의 OPEN_C_CODE ▶ 삭제 (부모)
+            DELETE
+            FROM TBL_OPENCOURSE
+            WHERE COU_NAME_CODE = V_COU_NAME_CODE;
+        
+        
+        -- (2) 과정 테이블의 과정 데이터가 삭제된다. 
+        
+            --⑥ 1레벨의 COURSE의 특정 과정(V_COU_NAME_CODE)이 삭제된다.=폐강된다
+            DELETE
+            FROM TBL_COURSE
+            WHERE COU_NAME_CODE = V_COU_NAME_CODE;
+    END IF;    
+    
+END;
