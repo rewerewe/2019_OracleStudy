@@ -1,0 +1,37 @@
+SELECT *
+FROM TBL_STUDENTS;
+/*
+S1000	김정규	1234569	STU1000
+S1001	조현우	1234570	STU1001
+S1002	진윤비	2234569	STU1002
+S1003	김성희	2234570	STU1003
+S1004	정임혜	2234571	STU1004
+*/
+
+---------------------------------------------------------------------------------학생의 학생ID로 성적(총점 및 등수) 확인 뷰 생성 
+
+-- 학생이 과목 수강한 과목의 성적을 확인(TBL_SCORE) → VIEW 
+-- 학생 계정(VIEW 권한 부여받은)에서 성적 조회 뷰 생성 : VIEW_SCORE_STU1001
+CREATE OR REPLACE VIEW VIEW_SCORE_STU1001
+AS
+SELECT T2.STUDENT_NAME AS "학생이름"            -- AS 이하는 요구분석서에서 출력되어야 하는 컬럼이름을 구분한 것. (삭제 가능)
+, T4.COURSE_NAME       AS "과정이름"
+, T6.SUB_NAME          AS "과목이름"
+, T5.SUB_START         AS "과목기간(시작연월일)"
+, T5.SUB_END           AS "과목기간(종료연월일)"
+, T7.BOOK_NAME         AS "교재이름"
+, T8.SCORE_AT          AS "출결"
+, T8.SCORE_WR          AS "필기"
+, T8.SCORE_PR          AS "실기"
+, (T8.SCORE_AT + T8.SCORE_WR + T8.SCORE_PR) AS "총점"
+, RANK() OVER(ORDER BY (T8.SCORE_AT + T8.SCORE_WR + T8.SCORE_PR) DESC)"등수"
+FROM TBL_SUGANG T1, TBL_STUDENTS T2, TBL_OPENCOURSE T3, TBL_COURSE T4, TBL_SUBJECT T5, TBL_STATIC_SUBJECT T6, TBL_BOOK T7, TBL_SCORE T8
+WHERE 1=1
+AND T1.STUDENT_CODE = T2.STUDENT_CODE           --학생코드로 학생이름 가져오기
+AND T1.OPEN_C_CODE  = T3.OPEN_C_CODE            --▶개설과정코드 = 수강 + 개설과정
+AND T3.COU_NAME_CODE = T4.COU_NAME_CODE         --과정명코드로 과정이름 가져오기
+AND T3.OPEN_C_CODE   = T5.OPEN_C_CODE           --▶개설과정코드 = 개설과정 + 개설된과목
+AND T5.SUB_NAME_CODE = T6.SUB_NAME_CODE          --과목명코드로 과목이름 가져오기
+AND T5.BOOK_CODE    = T7.BOOK_CODE              --교재코드로 교재이름 가져오기 
+AND T5.SUB_CODE     = T8.SUB_CODE               --▶개설과목코드 = 개설된과목 + 성적
+AND T2.STUDENT_ID = 'STU1001';                   -- 뷰 권한을 부여받은 학생코드 입력
