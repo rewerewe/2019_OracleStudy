@@ -439,4 +439,59 @@ SELECT COUNT(*) AS COUNT
 FROM TBL_EMP;
 --> 한줄 구성
 SELECT COUNT(*) AS COUNT FROM TBL_EMP;
+
 */
+
+-- 지역 확인 city id 조회
+SELECT CITY_ID 
+FROM TBL_CITY
+WHERE CITY_LOC='서울';
+--> 한줄구성
+SELECT CITY_ID FROM TBL_CITY WHERE CITY_LOC='서울'
+;
+
+-- 부서 확인 buseo id 조회
+SELECT BUSEO_ID 
+FROM TBL_BUSEO
+WHERE BUSEO_NAME='개발부';
+--> 한줄구성
+SELECT BUSEO_ID FROM TBL_BUSEO WHERE BUSEO_NAME='개발부'
+;
+
+-- 직위 확인 jikwi id 조회
+SELECT JIKWI_ID 
+FROM TBL_JIKWI
+WHERE JIKWI_NAME='이사';
+--> 한줄구성
+SELECT JIKWI_ID FROM TBL_JIKWI WHERE JIKWI_NAME='이사'
+;
+
+
+SELECT *
+FROM TBL_JIKWI;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
